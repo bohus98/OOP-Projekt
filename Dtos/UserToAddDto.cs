@@ -1,14 +1,13 @@
-namespace projekt.Models
+namespace projekt.Dtos
 {
-    public partial class User
+    public partial class UserToAddDto
     {
-        public int user_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
         public string role { get; set; }
 
-        public User()
+        public UserToAddDto()
         {
             if (username == null)
             {

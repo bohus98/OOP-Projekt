@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\Projekt.csproj": {}
+    "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\OOP-Projekt\\Projekt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\Projekt.csproj": {
+    "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\OOP-Projekt\\Projekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\Projekt.csproj",
+        "projectUniqueName": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\OOP-Projekt\\Projekt.csproj",
         "projectName": "Projekt",
-        "projectPath": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\Projekt.csproj",
+        "projectPath": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\OOP-Projekt\\Projekt.csproj",
         "packagesPath": "C:\\Users\\matus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\obj\\",
+        "outputPath": "C:\\Users\\matus\\OneDrive\\Počítač\\projekt\\OOP-Projekt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\matus\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.0, )"

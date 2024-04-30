@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using projekt.Data;
+using projekt.Dtos;
+using projekt.Models;
 
 namespace projekt.Controllers;
 
@@ -6,7 +9,7 @@ namespace projekt.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    DataContextDapper _dapper;
+    private readonly DataContextDapper _dapper;
    public UserController(IConfiguration config)
    {
         _dapper = new DataContextDapper(config);
@@ -48,9 +51,15 @@ public class UserController : ControllerBase
     [HttpPut("EditUser")]
     public IActionResult EditUser(User user)
     {
-        string sql = @"UPDATE [User] SET [username] = '" + user.username +"',[password] = '" + user.password +"',[email] = '" + user.email +"',[role] = '" + user.role + "' WHERE [user_id] =" + user.user_id;
+        string sql = @"
+            UPDATE [User] 
+                SET [username] = '" + user.username + 
+                "',[password] = '" + user.password +
+                "',[email] = '" + user.email +
+                "',[role] = '" + user.role +
+            "' WHERE [user_id] =" + user.user_id;
 
-                    Console.WriteLine(sql);
+        Console.WriteLine(sql);
         if (_dapper.ExecuteSql(sql))
         {
             return Ok();
@@ -60,11 +69,49 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("AddUser")]
-    public IActionResult AddUser()
+    public IActionResult AddUser(UserToAddDto user)
     {
-        return Ok();
+        string sql = @"INSERT INTO [User](
+                    [username],
+                    [password],
+                    [email],
+                    [role]
+                ) VALUES(" +
+                    "'" + user.username + 
+                    "', '" + user.password +
+                    "', '" + user.email +
+                    "', '" + user.role +
+                "')";
+        
+        Console.WriteLine(sql);
+        if (_dapper.ExecuteSql(sql))
+        {
+            return Ok();
+        }
+
+        throw new Exception("Failed to create user");
+
     }
+
+    [HttpDelete("DeleteUser/{user_id}")]
+
+    public IActionResult DeleteUser(int user_id)
+    {
+        string sql = @"
+        DELETE FROM [User] 
+            WHERE user_id ="  + user_id.ToString();
+    
+    Console.WriteLine(sql);
+        if (_dapper.ExecuteSql(sql))
+        {
+            return Ok();
+        }
+
+        throw new Exception("Failed to delete user");
+    }
+    
 }
+
 
 
 
