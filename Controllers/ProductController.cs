@@ -89,6 +89,23 @@ public class ProductController : ControllerBase
             return ExecuteSql(sql);
         }
 
+        [HttpGet("GetProductsByCategory/{category_id}")]
+        public IActionResult GetProductsByCategory(int category_id)
+        {
+            string sql = $@"
+                SELECT [product_id],
+                    [name],
+                    [description],
+                    [price],
+                    [stock_quantity],
+                    [category_id],
+                    [DIN],
+                    [photo_url]
+                    FROM [Product]
+             WHERE [category_id] = {category_id}";
+            return Ok(_dapper.LoadData<Product>(sql));
+        }
+
         private IActionResult ExecuteSql(string sql)
         {
             if (_dapper.ExecuteSql(sql))
